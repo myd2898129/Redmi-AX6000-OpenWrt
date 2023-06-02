@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -32,9 +32,10 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
-
 jobs:
   build:
+  
+    name: Build AX6000 Firmware
     runs-on: ubuntu-20.04
 
     steps:
@@ -60,6 +61,9 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        #cd openwrt
+        #git tag
+        #git checkout v22.03.3
 
     - name: Load custom feeds
       run: |
